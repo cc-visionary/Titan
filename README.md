@@ -3,6 +3,7 @@ The TITAN is an appointment booking system which is intended for hosts and users
 
 ### Links
 ![Prototype](https://www.figma.com/proto/7OShhWDx9dnP0cfEeiHuvU/MOBDEVE-MCO?node-id=14%3A4&scaling=scale-down&page-id=0%3A1&starting-point-node-id=14%3A4)
+![Scrum Board](https://future-van-cbf.notion.site/eabe2c669fe54489a961a5afb209f62a?v=311f15b7705d4a6ab5ff96ceab955b34)
 
 ### Authors
 - ![Christopher Lim](https://github.com/cc-visionary)
