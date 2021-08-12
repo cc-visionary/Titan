@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Titan</string>
+    <string name="app_description">Multiple types of appointments in one place. Be the first to choose your desired appointment.</string>
+
+    <!-- Button -->
+    <string name="get_started">Get Started</string>
+    <string name="signin">Sign In</string>
+    <string name="signup">Sign Up</string>
+    <string name="make_appointment">Make Appointment</string>
+    <string name="set_appointment">Set Appointment</string>
+    <string name="create_appointment">Create Appointment</string>
+    <string name="logout">Logout</string>
+
+    <!-- Signin and Signup -->
+    <string name="signin_title">Welcome Back 👋</string>
+    <string name="signin_subtitle">We are happy to see you again. You can continue where you left off by logging in.</string>
+    <string name="signup_title">Welcome to Titan 👋</string>
+    <string name="signup_subtitle">Hello, I guess you are new around here. You can start using the application after sign up.</string>
+    <string name="username_placeholder">Username</string>
+    <string name="email_address_placeholder">Email Address</string>
+    <string name="contact_number_placeholder">Contact Number</string>
+    <string name="password_placeholder">Password</string>
+    <string name="confirm_password_placeholder">Confirm Password</string>
+    <string name="no_account">Don’t have an account?</string>
+    <string name="has_account">Already have an account?</string>
+
+    <!-- Taskbar -->
+    <string name="home">Home</string>
+    <string name="appointments">Appointments</string>
+    <string name="previous_appointments">Previous Appointments</string>
+    <string name="profile">Profile</string>
+
+    <!-- Details -->
+    <string name="details">Details</string>
+    <string name="address">Address</string>
+    <string name="opening_hours">Opening Hours</string>
+
+    <!-- Appointment -->
+    <string name="appointment">Appointment</string>
+    <string name="day">Day</string>
+    <string name="time_slot">Time Slot</string>
+</resources>
