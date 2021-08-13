@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:padding="10pt"
-    tools:context=".Landing">
+    tools:context=".LandingActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -43,9 +43,9 @@
 
     <Button
         android:id="@+id/btn_start"
+        style="@style/Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/button"
         android:text="@string/get_started"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
