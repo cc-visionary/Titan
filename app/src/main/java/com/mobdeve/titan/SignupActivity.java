@@ -40,6 +40,7 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), UserHomeActivity.class);
+                // TODO: signup back-end logic
                 startActivity(intent);
             }
         });

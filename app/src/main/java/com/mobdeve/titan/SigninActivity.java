@@ -37,6 +37,7 @@ public class SigninActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), UserHomeActivity.class);
+                // TODO: signin back-end login
                 startActivity(intent);
             }
         });
