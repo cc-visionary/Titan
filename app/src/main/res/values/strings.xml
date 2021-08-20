@@ -21,8 +21,8 @@
     <string name="contact_number_placeholder">Contact Number</string>
     <string name="password_placeholder">Password</string>
     <string name="confirm_password_placeholder">Confirm Password</string>
-    <string name="no_account">Don’t have an account?</string>
-    <string name="has_account">Already have an account?</string>
+    <string name="no_account">Don’t have an account? Sign Up</string>
+    <string name="has_account">Already have an account? Sign In</string>
 
     <!-- Taskbar -->
     <string name="home">Home</string>
@@ -39,4 +39,6 @@
     <string name="appointment">Appointment</string>
     <string name="day">Day</string>
     <string name="time_slot">Time Slot</string>
+    <string name="user">User</string>
+    <string name="host">Host</string>
 </resources>

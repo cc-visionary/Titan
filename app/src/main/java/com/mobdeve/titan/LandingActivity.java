@@ -21,7 +21,7 @@ public class LandingActivity extends AppCompatActivity {
         this.getStartedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LandingActivity.this, LoginActivity.class);
+                Intent intent = new Intent(v.getContext(), SigninActivity.class);
                 startActivity(intent);
             }
         });
