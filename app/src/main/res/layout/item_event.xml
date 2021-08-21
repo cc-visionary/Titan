@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/oparenthesis_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:text="("
+        app:layout_constraintStart_toEndOf="@+id/ending_tv"
+        app:layout_constraintTop_toBottomOf="@+id/event_name" />
+
+    <TextView
+        android:id="@+id/event_name"
+        android:layout_width="137dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Foot Massage"
+        android:textColor="@color/base"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/time_iv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/event_name"
+        app:srcCompat="@drawable/time"
+        android:layout_width="34dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:id="@+id/starting_tv"
+        app:layout_constraintStart_toEndOf="@+id/time_iv"
+        app:layout_constraintTop_toBottomOf="@+id/event_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="20dp"
+        android:text="10:00" />
+
+    <TextView
+        android:id="@+id/dashline_tv"
+        app:layout_constraintStart_toEndOf="@+id/starting_tv"
+        app:layout_constraintTop_toBottomOf="@+id/event_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:text="-" />
+
+    <TextView
+        android:id="@+id/ending_tv"
+        app:layout_constraintStart_toEndOf="@+id/dashline_tv"
+        app:layout_constraintTop_toBottomOf="@+id/event_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:text="18:00" />
+
+    <TextView
+        android:id="@+id/slotsleft_tv"
+        app:layout_constraintStart_toEndOf="@+id/time_tv"
+        app:layout_constraintTop_toBottomOf="@+id/event_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="20dp"
+        android:text="minutes per slot" />
+
+    <TextView
+        android:id="@+id/time_tv"
+        app:layout_constraintStart_toEndOf="@+id/oparenthesis_tv"
+        app:layout_constraintTop_toBottomOf="@+id/event_name"
+        android:layout_width="25dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="20dp"
+        android:text="20" />
+
+    <TextView
+        android:id="@+id/textView10"
+        app:layout_constraintStart_toEndOf="@+id/slotsleft_tv"
+        app:layout_constraintTop_toBottomOf="@+id/event_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="20dp"
+        android:text=")" />
+
+    <TextView
+        android:id="@+id/slots_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:text="15" />
+
+    <TextView
+        android:id="@+id/textView12"
+        app:layout_constraintStart_toEndOf="@+id/slots_tv"
+        app:layout_constraintTop_toBottomOf="@+id/time_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="28dp"
+        android:text="slots left" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
