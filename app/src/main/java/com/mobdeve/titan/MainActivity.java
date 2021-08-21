@@ -7,14 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class LandingActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     private Button getStartedButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_landing);
+        setContentView(R.layout.activity_main);
 
         this.getStartedButton = findViewById(R.id.btn_start);
 
