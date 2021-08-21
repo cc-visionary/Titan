@@ -9,7 +9,7 @@
     tools:context=".SigninActivity">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_signin_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/signin_title"
@@ -18,14 +18,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_signin_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/signin_subtitle"
         android:textAppearance="@style/Body"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_signin_title" />
 
     <EditText
         android:id="@+id/et_signin_username"
@@ -36,7 +36,7 @@
         android:hint="@string/username_placeholder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_signin_subtitle" />
 
     <EditText
         android:id="@+id/et_signin_password"

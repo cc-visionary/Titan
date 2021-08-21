@@ -36,7 +36,7 @@ public class SigninActivity extends AppCompatActivity {
         this.signinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), UserHomeActivity.class);
+                Intent intent = new Intent(v.getContext(), AdminHomeActivity.class);
                 // TODO: signin back-end login
                 startActivity(intent);
             }

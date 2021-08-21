@@ -9,10 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Titan">
-        <activity android:name=".AdminHomeActivity"></activity>
+        <activity android:name=".AdminEventActivity"></activity>
+        <activity android:name=".AdminEventCreationActivity" />
+        <activity android:name=".CurrAppointmentsFragment" />
+        <activity android:name=".PrevAppointmentsFragment" />
+        <activity android:name=".ProfileFragment" />
+        <activity android:name=".AdminHomeActivity" />
         <activity android:name=".UserHomeActivity" />
         <activity android:name=".SignupActivity" />
-        <activity android:name=".LandingActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="com.package.name.MyActivity" />
