@@ -11,11 +11,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class PrevAppointmentsAdapter extends RecyclerView.Adapter<AppointmentsViewHolder> {
+public class CurrAppointmentsAdapter extends RecyclerView.Adapter<AppointmentsViewHolder>{
 
     private ArrayList<Appointments> dataAppointments;
 
-    public PrevAppointmentsAdapter(ArrayList<Appointments> dataAppointments) { this.dataAppointments = dataAppointments; }
+    public CurrAppointmentsAdapter(ArrayList<Appointments> dataAppointments) { this.dataAppointments = dataAppointments; }
 
     @NonNull
     @NotNull
@@ -25,10 +25,10 @@ public class PrevAppointmentsAdapter extends RecyclerView.Adapter<AppointmentsVi
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.item_appointments, parent, false);
 
-        AppointmentsViewHolder prevAppointmentsViewHolder = new AppointmentsViewHolder(view);
+        AppointmentsViewHolder currAppointmentsViewHolder = new AppointmentsViewHolder(view);
 
         // return custom ViewHolder
-        return prevAppointmentsViewHolder;
+        return currAppointmentsViewHolder;
     }
 
     @Override
@@ -40,7 +40,5 @@ public class PrevAppointmentsAdapter extends RecyclerView.Adapter<AppointmentsVi
     }
 
     @Override
-    public int getItemCount() {
-        return this.dataAppointments.size();
-    }
+    public int getItemCount() { return this.dataAppointments.size(); }
 }

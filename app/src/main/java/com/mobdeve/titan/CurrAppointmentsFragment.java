@@ -3,12 +3,19 @@ package com.mobdeve.titan;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 public class CurrAppointmentsFragment extends Fragment {
+
+    private RecyclerView rvTodayCurrAppointments;
+    private RecyclerView rvSoonCurrAppointments;
+    private ArrayList<Appointments> dataAppointments;
 
     public CurrAppointmentsFragment() {
         // Required empty public constructor

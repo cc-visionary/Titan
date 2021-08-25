@@ -10,14 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Text;
 
-public class PrevAppointmentsViewHolder extends RecyclerView.ViewHolder {
+public class AppointmentsViewHolder extends RecyclerView.ViewHolder {
 
     private TextView tvAppointmentName;
     private TextView tvAppointmentDate;
     private TextView tvAppointmentTime;
     private ImageView ivStatus;
 
-    public PrevAppointmentsViewHolder(@NonNull @NotNull View itemView) {
+    public AppointmentsViewHolder(@NonNull @NotNull View itemView) {
         super(itemView);
 
         this.tvAppointmentName = itemView.findViewById(R.id.tv_appointment_name);
