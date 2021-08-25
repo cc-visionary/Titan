@@ -24,6 +24,12 @@ public class PrevAppointmentsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        this.dataAppointments = new PrevAppointmentDataHelper().initializeData();
+        this.rvPrevAppointments.findViewById(R.id.rv_prev_appointments);
+        //TODO pls fix
+        //this.rvPrevAppointments.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        this.rvPrevAppointments.setAdapter(new PrevAppointmentsAdapter(this.dataAppointments));
     }
 
     @Override

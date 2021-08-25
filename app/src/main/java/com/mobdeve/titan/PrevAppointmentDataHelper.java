@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class PrevAppointmentDataHelper {
-    public ArrayList<Appointments> InitializeData() {
+    public ArrayList<Appointments> initializeData() {
         String[] usernames = {"Jethro", "Patrick", "Christopher"};
         ArrayList<Appointments> data = new ArrayList<>();
         data.add(new Appointments(
