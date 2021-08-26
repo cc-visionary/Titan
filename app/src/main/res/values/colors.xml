@@ -11,4 +11,5 @@
     <color name="input_placeholder">#9397B0</color>
     <color name="background_primary">#FFF</color>
     <color name="background_secondary">#F2F6F9</color>
+    <color name="light">#9A9FB6</color>
 </resources>
