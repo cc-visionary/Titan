@@ -1,5 +1,6 @@
 package com.mobdeve.titan;
 
+import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,11 +27,14 @@ public class AppointmentsViewHolder extends RecyclerView.ViewHolder {
         this.ivStatus = itemView.findViewById(R.id.iv_status);
     }
 
-    public void setAppointmentName(String name) { this.tvAppointmentName.setText(name); }
+    public void setName(String name, boolean isToday) {
+        if(isToday) this.tvAppointmentName.setTextColor(Color.parseColor("#83C5BE"));
+        this.tvAppointmentName.setText(name);
+    }
 
-    public void setAppointmentDate(String date) { this.tvAppointmentDate.setText(date); }
+    public void setDate(String date) { this.tvAppointmentDate.setText(date); }
 
-    public void setAppointmentTime(String time) { this.tvAppointmentTime.setText(time); }
+    public void setTime(String time) { this.tvAppointmentTime.setText(time); }
 
     public void setStatus(int status) { this.ivStatus.setImageResource(status); }
 }

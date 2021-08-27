@@ -9,13 +9,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class PrevAppointmentsFragment extends Fragment {
 
     private RecyclerView rvPrevAppointments;
-    private ArrayList<Appointments> dataAppointments;
+    private TextView tvDateToday;
 
     public PrevAppointmentsFragment() {
         // Required empty public constructor
@@ -31,10 +35,14 @@ public class PrevAppointmentsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_prev_appointments, container, false);
 
-        this.dataAppointments = new PrevAppointmentDataHelper().initializeData();
         this.rvPrevAppointments = view.findViewById(R.id.rv_prev_appointments);
+        this.tvDateToday = view.findViewById(R.id.tv_pa_date);
+
+        this.tvDateToday.setText(new SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault()).format(new Date()));
+
         this.rvPrevAppointments.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
-        this.rvPrevAppointments.setAdapter(new PrevAppointmentsAdapter(this.dataAppointments));
+        this.rvPrevAppointments.setAdapter(new PrevAppointmentsAdapter(new PrevAppointmentDataHelper().initializeData()));
+
         // Inflate the layout for this fragment
         return view;
     }

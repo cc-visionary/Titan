@@ -41,17 +41,11 @@
     <string name="time_slot">Time Slot</string>
     <string name="user">User</string>
     <string name="host">Host</string>
-    <string name="title_activity_main2">MainActivity</string>
-    <string name="today">today</string>
+    <string name="today">Today</string>
 
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Unique IDs -->
+    <string name="id_event_name">EVENT_NAME</string>
+    <string name="id_event_schedule">EVENT_SCHEDULE</string>
+    <string name="id_event_address">EVENT_NAME</string>
+    <string name="id_event_days">EVENT_SLOTS</string>
 </resources>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "994575622910",
+    "project_id": "titan-ae6af",
+    "storage_bucket": "titan-ae6af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994575622910:android:047bd0b847877b3d113baf",
+        "android_client_info": {
+          "package_name": "com.mobdeve.titan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "994575622910-jeg93kk2htlvfl8g7vki2d8la6jhln4g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdkgvUR5HYCXNio9ukEuXy_fzxefrJWdo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "994575622910-jeg93kk2htlvfl8g7vki2d8la6jhln4g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

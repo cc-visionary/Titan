@@ -7,65 +7,74 @@
     tools:context="@string/appointments">
 
     <TextView
-        android:id="@+id/tv_today_curr"
+        android:id="@+id/tv_ca_today_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         android:text="@string/today"
+        android:textColor="@color/input_placeholder"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_date_curr"
+        android:id="@+id/tv_ca_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Date here"
+        android:textColor="@color/base"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_today_curr" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_ca_today_title" />
+
+    <TextView
+        android:id="@+id/tv_ca_today"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Today (0)"
+        android:textColor="@color/base"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ca_date" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_today_curr_appointments"
+        android:id="@+id/rv_ca_today"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_today_curr_appointments" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_ca_today" />
 
     <TextView
-        android:id="@+id/tv_today_curr_appointments"
+        android:id="@+id/tv_ca_soon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:text="TextView"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Soon (0)"
+        android:textColor="@color/base"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_date_curr" />
-
-    <TextView
-        android:id="@+id/tv_soon_curr_appointments"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_today_curr_appointments" />
+        app:layout_constraintTop_toBottomOf="@+id/rv_ca_today" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_soon_curr_appointmnets"
+        android:id="@+id/rv_ca_soon"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_soon_curr_appointments" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_ca_soon" />
 </androidx.constraintlayout.widget.ConstraintLayout>
