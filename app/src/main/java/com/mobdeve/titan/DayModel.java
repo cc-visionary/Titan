@@ -26,8 +26,12 @@ public class DayModel {
         }
     }
 
-    public DayModel() {
+    public TimeModel getStartTime() {
+        return startTime;
+    }
 
+    public TimeModel getEndTime() {
+        return endTime;
     }
 
     public boolean isClosed() {

@@ -42,6 +42,8 @@ public class AdminHomeActivity extends AppCompatActivity {
         this.btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), SigninActivity.class);
+                v.getContext().startActivity(intent);
                 finish();
             }
         });
