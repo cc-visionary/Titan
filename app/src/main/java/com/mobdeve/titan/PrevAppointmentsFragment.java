@@ -24,19 +24,18 @@ public class PrevAppointmentsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        this.dataAppointments = new PrevAppointmentDataHelper().initializeData();
-        this.rvPrevAppointments.findViewById(R.id.rv_prev_appointments);
-        //TODO pls fix
-        //this.rvPrevAppointments.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        this.rvPrevAppointments.setAdapter(new PrevAppointmentsAdapter(this.dataAppointments));
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_prev_appointments, container, false);
+        View view = inflater.inflate(R.layout.fragment_prev_appointments, container, false);
 
+        this.dataAppointments = new PrevAppointmentDataHelper().initializeData();
+        this.rvPrevAppointments = view.findViewById(R.id.rv_prev_appointments);
+        this.rvPrevAppointments.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
+        this.rvPrevAppointments.setAdapter(new PrevAppointmentsAdapter(this.dataAppointments));
+        // Inflate the layout for this fragment
+        return view;
     }
 }

@@ -25,22 +25,21 @@ public class CurrAppointmentsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        this.dataAppointments = new PrevAppointmentDataHelper().initializeData();
-        this.rvTodayCurrAppointments.findViewById(R.id.rv_today_curr_appointments);
-        //TODO pls fix
-        //this.rvTodayCurrAppointments.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        this.rvTodayCurrAppointments.setAdapter(new CurrAppointmentsAdapter(this.dataAppointments));
-        this.rvSoonCurrAppointments.findViewById(R.id.rv_soon_curr_appointmnets);
-        //TODO pls fix
-        //this.rvSoonCurrAppointments.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        this.rvSoonCurrAppointments.setAdapter(new CurrAppointmentsAdapter(this.dataAppointments));
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_curr_appointments, container, false);
+
+        this.dataAppointments = new PrevAppointmentDataHelper().initializeData();
+        this.rvTodayCurrAppointments = view.findViewById(R.id.rv_today_curr_appointments);
+        this.rvTodayCurrAppointments.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
+        this.rvTodayCurrAppointments.setAdapter(new CurrAppointmentsAdapter(this.dataAppointments));
+        this.rvSoonCurrAppointments = view.findViewById(R.id.rv_soon_curr_appointmnets);
+        this.rvSoonCurrAppointments.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
+        this.rvSoonCurrAppointments.setAdapter(new CurrAppointmentsAdapter(this.dataAppointments));
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_curr_appointments, container, false);
+        return view;
     }
 }
