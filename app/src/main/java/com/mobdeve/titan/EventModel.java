@@ -81,6 +81,6 @@ public class EventModel {
     public boolean isToday() {
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());
-        return this.days[c.get(Calendar.DAY_OF_WEEK)] != null;
+        return this.days[c.get(Calendar.DAY_OF_WEEK) - 1] != null;
     }
 }
