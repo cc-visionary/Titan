@@ -16,6 +16,10 @@ public class EventModel {
         this.days = days;
     }
 
+    public EventModel() {
+
+    }
+
     public String getCreatorUsername() {
         return creatorUsername;
     }

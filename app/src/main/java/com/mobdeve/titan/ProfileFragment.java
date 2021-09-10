@@ -11,9 +11,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.mobdeve.titan.DAO.UserDAO;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.mobdeve.titan.DatabaseHelpers.UserDatabaseHelper;
 import com.mobdeve.titan.Models.UserModel;
 
 public class ProfileFragment extends Fragment {
@@ -40,20 +42,26 @@ public class ProfileFragment extends Fragment {
         this.logoutButton = view.findViewById(R.id.btn_profile_logout);
 
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        UserDAO userDAO = new UserDAO(view.getContext());
-        UserModel user = userDAO.getUserByEmail(firebaseUser.getEmail());
+        UserDatabaseHelper userDBHelper = new UserDatabaseHelper();
+        userDBHelper.getUserByEmail(firebaseUser.getEmail())
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        UserModel user = documentSnapshot.toObject(UserModel.class);
 
-        this.usernameTextView.setText(user.getUsername());
-        this.phoneTextView.setText(user.getNumber());
+                        usernameTextView.setText(user.getUsername());
+                        phoneTextView.setText(user.getNumber());
 
-        this.logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(v.getContext(), SigninActivity.class);
-                v.getContext().startActivity(intent);
-            }
-        });
+                        logoutButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                FirebaseAuth.getInstance().signOut();
+                                Intent intent = new Intent(v.getContext(), SigninActivity.class);
+                                v.getContext().startActivity(intent);
+                            }
+                        });
+                    }
+                });
 
         // Inflate the layout for this fragment
         return view;

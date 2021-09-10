@@ -18,7 +18,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.mobdeve.titan.DAO.UserDAO;
+import com.mobdeve.titan.DatabaseHelpers.UserDatabaseHelper;
 import com.mobdeve.titan.Models.UserModel;
 
 import static android.content.ContentValues.TAG;
@@ -70,8 +70,6 @@ public class SignupActivity extends AppCompatActivity {
 
                 if(validateFields(username, email, contact, password, confirmPassword)) {
                     UserModel user = new UserModel(username, email, contact, password, userType);
-                    UserDAO userDAO = new UserDAO(v.getContext());
-                    userDAO.addUser(user);
                     storeUser(user);
                 }
             }
@@ -93,6 +91,11 @@ public class SignupActivity extends AppCompatActivity {
         }
         if(contact.isEmpty()) {
             this.etContact.setError("Contact required");
+            this.etContact.requestFocus();
+            hasError = true;
+        }
+        if(contact.length() != 11) {
+            this.etContact.setError("Contact must be of length 11");
             this.etContact.requestFocus();
             hasError = true;
         }
@@ -121,7 +124,7 @@ public class SignupActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            success(user.getUserType());
+                            success(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -131,9 +134,12 @@ public class SignupActivity extends AppCompatActivity {
                 });
     }
 
-    public void success(String userType) {
+    public void success(UserModel user) {
         this.pbSignup.setVisibility(View.GONE);
-        if(userType.equals("host")) {
+
+        UserDatabaseHelper userDBHelper = new UserDatabaseHelper();
+        userDBHelper.addUser(user);
+        if(user.getUserType().equals("host")) {
             Intent intent = new Intent(this, AdminHomeActivity.class);
             startActivity(intent);
         } else {

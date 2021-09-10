@@ -11,6 +11,10 @@ public class UserModel {
         this.userType = userType;
     }
 
+    public UserModel() {
+
+    }
+
     public String getUsername() {
         return username;
     }

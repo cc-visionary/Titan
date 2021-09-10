@@ -14,11 +14,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.mobdeve.titan.DAO.UserDAO;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.mobdeve.titan.DatabaseHelpers.UserDatabaseHelper;
 import com.mobdeve.titan.Models.UserModel;
 
 import static android.content.ContentValues.TAG;
@@ -64,9 +65,15 @@ public class SigninActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        UserDAO userDAO = new UserDAO(v.getContext());
-                                        UserModel user = userDAO.getUserByEmail(email);
-                                        success(user.getUserType());
+                                        UserDatabaseHelper userDBHelper = new UserDatabaseHelper();
+                                        userDBHelper.getUserByEmail(email)
+                                                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                    @Override
+                                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                        UserModel user = documentSnapshot.toObject(UserModel.class);
+                                                        success(user.getUserType());
+                                                    }
+                                                });
                                     } else {
                                         // If sign in fails, display a message to the user.
                                         Log.w(TAG, "signInWithEmail:failure", task.getException());

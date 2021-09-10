@@ -7,10 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.mobdeve.titan.DAO.UserDAO;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.mobdeve.titan.DatabaseHelpers.UserDatabaseHelper;
 import com.mobdeve.titan.Models.UserModel;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,19 +21,25 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        UserDAO userDAO = new UserDAO(MainActivity.this);
 
-        FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
-        if(current_user == null) {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(firebaseUser == null) {
             setupWelcome();
         } else {
-            UserModel user = userDAO.getUserByEmail(current_user.getEmail());
-            System.out.println(user.getUserType());
-            if(user.getUserType().equals("host")) {
-                setupHostLoggedIn();
-            } else {
-                setupUserLoggedIn();
-            }
+            UserDatabaseHelper userDBHelper = new UserDatabaseHelper();
+            userDBHelper.getUserByEmail(firebaseUser.getEmail())
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            UserModel user = documentSnapshot.toObject(UserModel.class);
+
+                            if(user.getUserType().equals("host")) {
+                                setupHostLoggedIn();
+                            } else {
+                                setupUserLoggedIn();
+                            }
+                        }
+                    });
         }
     }
 
