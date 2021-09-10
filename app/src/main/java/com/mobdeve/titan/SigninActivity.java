@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.mobdeve.titan.DAO.UserDAO;
+import com.mobdeve.titan.Models.UserModel;
 
 import static android.content.ContentValues.TAG;
 
@@ -62,7 +64,9 @@ public class SigninActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        success();
+                                        UserDAO userDAO = new UserDAO(v.getContext());
+                                        UserModel user = userDAO.getUserByEmail(email);
+                                        success(user.getUserType());
                                     } else {
                                         // If sign in fails, display a message to the user.
                                         Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -74,13 +78,6 @@ public class SigninActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    public void updateUI(FirebaseUser user) {
-        if(user != null) {
-            Intent intent = new Intent(this, AdminHomeActivity.class);
-            startActivity(intent);
-        }
     }
 
     public boolean validateFields(String email, String password) {
@@ -97,16 +94,20 @@ public class SigninActivity extends AppCompatActivity {
         return !hasError;
     }
 
-    public void success() {
+    public void success(String userType) {
         this.pbSignin.setVisibility(View.GONE);
-        Toast.makeText(this, "Signin was successful", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, AdminHomeActivity.class);
-        startActivity(intent);
-        finish();
+        if(userType.equals("host")) {
+            Intent intent = new Intent(this, AdminHomeActivity.class);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, UserHomeActivity.class);
+            startActivity(intent);
+        }
+        Toast.makeText(this, "Sign in was successful", Toast.LENGTH_SHORT).show();
     }
 
     public void fail() {
         this.pbSignin.setVisibility(View.GONE);
-        Toast.makeText(this, "Signin failed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Sign in failed", Toast.LENGTH_SHORT).show();
     }
 }

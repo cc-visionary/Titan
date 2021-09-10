@@ -1,4 +1,4 @@
-package com.mobdeve.titan;
+package com.mobdeve.titan.ViewHolders;
 
 import android.graphics.Color;
 import android.view.View;
@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.mobdeve.titan.R;
 
 import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Text;

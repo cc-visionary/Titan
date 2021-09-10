@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,13 +18,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.mobdeve.titan.DAO.UserDAO;
+import com.mobdeve.titan.Models.UserModel;
 
 import static android.content.ContentValues.TAG;
 
 public class SignupActivity extends AppCompatActivity {
 
     private EditText etUsername, etEmail, etContact, etPassword, etConfirmPassword;
+    private Switch userTypeSwitch;
     private TextView signinTextView;
     private Button signupButton;
     private ProgressBar pbSignup;
@@ -39,6 +42,7 @@ public class SignupActivity extends AppCompatActivity {
         this.etContact = findViewById(R.id.et_signup_contact);
         this.etPassword = findViewById(R.id.et_signup_password);
         this.etConfirmPassword = findViewById(R.id.et_signup_confirm_password);
+        this.userTypeSwitch = findViewById(R.id.sw_user_type);
         this.signinTextView = findViewById(R.id.tv_signin);
         this.signupButton = findViewById(R.id.btn_signup);
         this.pbSignup = findViewById(R.id.pb_signup);
@@ -62,10 +66,13 @@ public class SignupActivity extends AppCompatActivity {
                 String contact = etContact.getText().toString();
                 String password = etPassword.getText().toString();
                 String confirmPassword = etConfirmPassword.getText().toString();
-                String userType = true ? "admin" : "user";
+                String userType = userTypeSwitch.isChecked() ? "host" : "user";
 
                 if(validateFields(username, email, contact, password, confirmPassword)) {
-                    storeUser(new UserModel(username, email, contact, password, userType));
+                    UserModel user = new UserModel(username, email, contact, password, userType);
+                    UserDAO userDAO = new UserDAO(v.getContext());
+                    userDAO.addUser(user);
+                    storeUser(user);
                 }
             }
 
@@ -114,7 +121,7 @@ public class SignupActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            success();
+                            success(user.getUserType());
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -124,11 +131,16 @@ public class SignupActivity extends AppCompatActivity {
                 });
     }
 
-    public void success() {
+    public void success(String userType) {
         this.pbSignup.setVisibility(View.GONE);
+        if(userType.equals("host")) {
+            Intent intent = new Intent(this, AdminHomeActivity.class);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, UserHomeActivity.class);
+            startActivity(intent);
+        }
         Toast.makeText(this, "Signup was successful", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, UserHomeActivity.class);
-        startActivity(intent);
         finish();
     }
 

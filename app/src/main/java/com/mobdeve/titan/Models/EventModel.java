@@ -1,6 +1,4 @@
-package com.mobdeve.titan;
-
-import android.content.Intent;
+package com.mobdeve.titan.Models;
 
 import java.util.ArrayList;
 import java.util.Calendar;

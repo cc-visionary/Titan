@@ -1,4 +1,4 @@
-package com.mobdeve.titan;
+package com.mobdeve.titan.Adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,6 +6,10 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.mobdeve.titan.ViewHolders.AppointmentsViewHolder;
+import com.mobdeve.titan.Models.Appointments;
+import com.mobdeve.titan.R;
 
 import org.jetbrains.annotations.NotNull;
 

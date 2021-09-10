@@ -1,4 +1,4 @@
-package com.mobdeve.titan;
+package com.mobdeve.titan.Models;
 
 public class TimeModel {
     private int hour, minute;

@@ -11,8 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.mobdeve.titan.Adapters.PrevAppointmentsAdapter;
+import com.mobdeve.titan.DataHelpers.PrevAppointmentDataHelper;
+
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 

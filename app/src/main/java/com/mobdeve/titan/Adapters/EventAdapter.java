@@ -1,4 +1,4 @@
-package com.mobdeve.titan;
+package com.mobdeve.titan.Adapters;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -7,6 +7,11 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.mobdeve.titan.AdminEventActivity;
+import com.mobdeve.titan.ViewHolders.EventViewHolder;
+import com.mobdeve.titan.Models.EventModel;
+import com.mobdeve.titan.R;
 
 import java.util.ArrayList;
 

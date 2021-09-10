@@ -1,6 +1,4 @@
-package com.mobdeve.titan;
-
-import java.util.Date;
+package com.mobdeve.titan.Models;
 
 public class AppointmentModel {
     private String username, status;

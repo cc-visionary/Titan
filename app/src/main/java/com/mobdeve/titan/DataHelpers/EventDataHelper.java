@@ -1,4 +1,8 @@
-package com.mobdeve.titan;
+package com.mobdeve.titan.DataHelpers;
+
+import com.mobdeve.titan.Models.DayModel;
+import com.mobdeve.titan.Models.EventModel;
+import com.mobdeve.titan.Models.TimeModel;
 
 import java.util.ArrayList;
 

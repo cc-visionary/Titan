@@ -1,4 +1,4 @@
-package com.mobdeve.titan;
+package com.mobdeve.titan.ViewHolders;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.mobdeve.titan.R;
 
 public class EventViewHolder extends RecyclerView.ViewHolder {
     private TextView tvEventName, tvEventSchedule;

@@ -11,6 +11,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.mobdeve.titan.Adapters.EventAdapter;
+import com.mobdeve.titan.DataHelpers.EventDataHelper;
+import com.mobdeve.titan.Models.EventModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -42,6 +46,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         this.btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(v.getContext(), SigninActivity.class);
                 v.getContext().startActivity(intent);
                 finish();

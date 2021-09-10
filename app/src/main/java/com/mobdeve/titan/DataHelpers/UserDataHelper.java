@@ -1,4 +1,6 @@
-package com.mobdeve.titan;
+package com.mobdeve.titan.DataHelpers;
+
+import com.mobdeve.titan.Models.UserModel;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,7 @@
-package com.mobdeve.titan;
+package com.mobdeve.titan.DataHelpers;
+
+import com.mobdeve.titan.Models.Appointments;
+import com.mobdeve.titan.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

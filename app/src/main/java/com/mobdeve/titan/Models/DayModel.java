@@ -1,7 +1,6 @@
-package com.mobdeve.titan;
+package com.mobdeve.titan.Models;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 // to be used in EventModel
 public class DayModel {
