@@ -25,7 +25,7 @@ import static android.content.ContentValues.TAG;
 
 public class SignupActivity extends AppCompatActivity {
 
-    private EditText etUsername, etEmail, etContact, etPassword, etConfirmPassword;
+    private EditText etEmail, etContact, etPassword, etConfirmPassword;
     private Switch userTypeSwitch;
     private TextView signinTextView;
     private Button signupButton;
@@ -37,7 +37,6 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        this.etUsername = findViewById(R.id.et_signup_username);
         this.etEmail = findViewById(R.id.et_signup_email);
         this.etContact = findViewById(R.id.et_signup_contact);
         this.etPassword = findViewById(R.id.et_signup_password);
@@ -61,15 +60,14 @@ public class SignupActivity extends AppCompatActivity {
         this.signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = etUsername.getText().toString();
                 String email = etEmail.getText().toString();
                 String contact = etContact.getText().toString();
                 String password = etPassword.getText().toString();
                 String confirmPassword = etConfirmPassword.getText().toString();
                 String userType = userTypeSwitch.isChecked() ? "host" : "user";
 
-                if(validateFields(username, email, contact, password, confirmPassword)) {
-                    UserModel user = new UserModel(username, email, contact, password, userType);
+                if(validateFields(email, contact, password, confirmPassword)) {
+                    UserModel user = new UserModel(email, contact, password, userType);
                     storeUser(user);
                 }
             }
@@ -77,13 +75,8 @@ public class SignupActivity extends AppCompatActivity {
         });
     }
 
-    public boolean validateFields(String username, String email, String contact, String password, String confirmPassword) {
+    public boolean validateFields(String email, String contact, String password, String confirmPassword) {
         boolean hasError = false;
-        if(username.isEmpty()) {
-            this.etUsername.setError("Username required");
-            this.etUsername.requestFocus();
-            hasError = true;
-        }
         if(email.isEmpty()) {
             this.etEmail.setError("Email required");
             this.etEmail.requestFocus();

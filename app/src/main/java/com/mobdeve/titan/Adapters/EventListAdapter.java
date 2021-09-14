@@ -9,19 +9,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mobdeve.titan.AdminEventActivity;
-import com.mobdeve.titan.ViewHolders.EventViewHolder;
 import com.mobdeve.titan.Models.EventModel;
 import com.mobdeve.titan.R;
+import com.mobdeve.titan.UserEventActivity;
+import com.mobdeve.titan.ViewHolders.EventViewHolder;
 
 import java.util.ArrayList;
 
-public class EventAdapter extends RecyclerView.Adapter<EventViewHolder> {
+public class EventListAdapter extends RecyclerView.Adapter<EventViewHolder> {
     private ArrayList<EventModel> events;
-    private boolean isToday;
 
-    public EventAdapter(ArrayList<EventModel> events, boolean isToday) {
+    public EventListAdapter(ArrayList<EventModel> events) {
         this.events = events;
-        this.isToday = isToday;
     }
 
     @NonNull
@@ -37,7 +36,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
-        holder.setEventName(this.events.get(position).getName(), this.isToday);
+        holder.setEventName(this.events.get(position).getName(), false);
         holder.setEventSchedule(this.events.get(position).toStringOpeningHours());
 
         holder.getClEventItem().setOnClickListener(new View.OnClickListener() {
@@ -45,18 +44,20 @@ public class EventAdapter extends RecyclerView.Adapter<EventViewHolder> {
             public void onClick(View v) {
                 int currPosition = holder.getBindingAdapterPosition();
 
-                Intent intent = new Intent(v.getContext(), AdminEventActivity.class);
+                Intent intent = new Intent(v.getContext(), UserEventActivity.class);
                 intent.putExtra(String.valueOf(R.string.id_event_id), events.get(currPosition).getKey());
                 intent.putExtra(String.valueOf(R.string.id_event_name), events.get(currPosition).getName());
                 intent.putExtra(String.valueOf(R.string.id_event_schedule), events.get(currPosition).toStringOpeningHours());
                 intent.putExtra(String.valueOf(R.string.id_event_address), events.get(currPosition).getAddress());
+                intent.putExtra(String.valueOf(R.string.id_event_contact), events.get(currPosition).getContactNumber());
                 v.getContext().startActivity(intent);
             }
         });
     }
 
-    public void addEvent(EventModel event) {
-        this.events.add(event);
+    public void setEvents(ArrayList<EventModel> events) {
+        this.events = events;
+        notifyDataSetChanged();
     }
 
     @Override

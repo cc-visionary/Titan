@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Titan">
-        <activity android:name=".AdminEventActivity"></activity>
+        <activity android:name=".UserAddAppointmentActivity"></activity>
+        <activity android:name=".UserEventActivity" />
+        <activity android:name=".AdminEventActivity" />
         <activity android:name=".AdminEventCreationActivity" />
         <activity android:name=".CurrAppointmentsFragment" />
         <activity android:name=".PrevAppointmentsFragment" />
