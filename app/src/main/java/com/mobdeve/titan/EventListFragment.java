@@ -10,8 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -22,6 +25,7 @@ import com.mobdeve.titan.Adapters.EventAdapter;
 import com.mobdeve.titan.Adapters.EventListAdapter;
 import com.mobdeve.titan.DataHelpers.EventDataHelper;
 import com.mobdeve.titan.DatabaseHelpers.EventDatabaseHelper;
+import com.mobdeve.titan.Models.DayModel;
 import com.mobdeve.titan.Models.EventModel;
 
 import java.util.ArrayList;
@@ -30,6 +34,7 @@ public class EventListFragment extends Fragment {
     private EditText searchEditText;
     private ImageButton searchButton;
     private RecyclerView recyclerView;
+    private Spinner daysFilterSpinner;
     EventListAdapter eventListAdapter;
     ArrayList<EventModel> events;
 
@@ -49,6 +54,7 @@ public class EventListFragment extends Fragment {
 
         this.searchEditText = view.findViewById(R.id.et_event_search);
         this.searchButton = view.findViewById(R.id.btn_search);
+        this.daysFilterSpinner = view.findViewById(R.id.s_days_filter);
         this.recyclerView = view.findViewById(R.id.rv_event_list);
 
         events = new ArrayList<EventModel>();
@@ -84,6 +90,46 @@ public class EventListFragment extends Fragment {
                     }
                     eventListAdapter.setEvents(filteredEvents);
                 }
+            }
+        });
+        String[] days = new String[]{"All", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Everyday"};
+        ArrayAdapter filterAdapter = new ArrayAdapter<>(view.getContext(), R.layout.item_spinner, days);
+        this.daysFilterSpinner.setAdapter(filterAdapter);
+        this.daysFilterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position == 0) {
+                    // all the appointments (default)
+                    if(eventListAdapter != null) eventListAdapter.setEvents(events);
+                } else if(position == 6) {
+                    // only add if event is taking appointments everyday
+                    ArrayList<EventModel> filteredEvents = new ArrayList<>();
+                    for(EventModel event : events) {
+                        boolean isEveryday = true;
+                        for(DayModel day : event.getDays()) {
+                            if(day == null) {
+                                isEveryday = false;
+                            }
+                        }
+                        if(isEveryday) {
+                            filteredEvents.add(event);
+                        }
+                    }
+                    eventListAdapter.setEvents(filteredEvents);
+                } else {
+                    ArrayList<EventModel> filteredEvents = new ArrayList<>();
+                    for(EventModel event : events) {
+                        if(event.getDays().get(position - 1) != null) {
+                            filteredEvents.add(event);
+                        }
+                    }
+                    eventListAdapter.setEvents(filteredEvents);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
