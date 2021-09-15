@@ -86,9 +86,9 @@ public class CurrAppointmentsFragment extends Fragment {
                 appointmentsToday.sort((o1, o2) -> o1.getStartTime().toString().compareTo(o2.getStartTime().toString()));
 
                 rvTodayCurrAppointments.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
-                rvTodayCurrAppointments.setAdapter(new CurrAppointmentsAdapter(appointmentsToday, true));
+                rvTodayCurrAppointments.setAdapter(new CurrAppointmentsAdapter(appointmentsToday, true, tvToday));
                 rvSoonCurrAppointments.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
-                rvSoonCurrAppointments.setAdapter(new CurrAppointmentsAdapter(appointmentsSoon, false));
+                rvSoonCurrAppointments.setAdapter(new CurrAppointmentsAdapter(appointmentsSoon, false, tvSoon));
             }
         });
 

@@ -49,4 +49,9 @@
     <string name="id_event_schedule">EVENT_SCHEDULE</string>
     <string name="id_event_address">EVENT_ADDRESS</string>
     <string name="id_event_contact">EVENT_CONTACT</string>
+
+    <string name="notification_title">Appointment Schedule</string>
+    <string name="notification_body_on_day">You have an appointment today</string>
+    <string name="notification_body_5_min">5 minutes before your next appointment</string>
+    <string name="notification_body_on_appointment">You currently have an appointment right now</string>
 </resources>

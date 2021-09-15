@@ -100,6 +100,7 @@ public class UserEventActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent appointmentIntent = new Intent(UserEventActivity.this, UserAddAppointmentActivity.class);
                 appointmentIntent.putExtra(String.valueOf(R.string.id_event_id), b.getString(String.valueOf(R.string.id_event_id)));
+                appointmentIntent.putExtra(String.valueOf(R.string.id_event_name), b.getString(String.valueOf(R.string.id_event_name)));
                 startActivity(appointmentIntent);
             }
         });

@@ -3,6 +3,7 @@ package com.mobdeve.titan.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,14 +20,15 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class CurrAppointmentsAdapter extends RecyclerView.Adapter<AppointmentsViewHolder>{
-
+public class CurrAppointmentsAdapter extends RecyclerView.Adapter<AppointmentsViewHolder> {
     private ArrayList<AppointmentModel> appointments;
     private boolean isToday;
+    private TextView dateTextView;
 
-    public CurrAppointmentsAdapter(ArrayList<AppointmentModel> appointments, boolean isToday) {
+    public CurrAppointmentsAdapter(ArrayList<AppointmentModel> appointments, boolean isToday, TextView dateTextView) {
         this.appointments = appointments;
         this.isToday = isToday;
+        this.dateTextView = dateTextView;
     }
 
     @NonNull
@@ -68,6 +70,11 @@ public class CurrAppointmentsAdapter extends RecyclerView.Adapter<AppointmentsVi
                         day.setAppointment(day.getAppointments().indexOf(day.getUserAppointment(email)), null);
                         daysDBHelper.updateDayAppointments(dayID, day);
                         appointments.remove(position);
+                        if(isToday) {
+                            dateTextView.setText(String.format("Today (%d)", appointments.size()));
+                        } else {
+                            dateTextView.setText(String.format("Soon (%d)", appointments.size()));
+                        }
                         notifyDataSetChanged();
                     }
                 });

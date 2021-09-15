@@ -1,9 +1,10 @@
 package com.mobdeve.titan;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,9 +23,13 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.mobdeve.titan.DatabaseHelpers.DaysDatabaseHelper;
 import com.mobdeve.titan.Models.AppointmentModel;
 import com.mobdeve.titan.Models.DayModel;
+import com.mobdeve.titan.Services.Notification5MinService;
+import com.mobdeve.titan.Services.NotificationOnAppointmentService;
+import com.mobdeve.titan.Services.NotificationOnDayService;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -35,6 +40,9 @@ public class UserAddAppointmentActivity extends AppCompatActivity {
     private ImageButton backButton;
     private ArrayList<DayModel> days;
     private ArrayList<String> dayStrings, appointmentStrings, allAppointmentStrings;
+
+    public static final String NOTIFICATION_CHANNEL_ID = "10001" ;
+    private final static String default_notification_channel_id = "default" ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,12 +142,56 @@ public class UserAddAppointmentActivity extends AppCompatActivity {
         this.setAppointmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = getIntent();
+                Bundle b = intent.getExtras();
+
+                String eventName = b.getString(String.valueOf(R.string.id_event_name));
+
                 FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                int appointmentIndex = allAppointmentStrings.indexOf(appointmentsSpinner.getSelectedItem());
                 DayModel currentDay = days.get(dayStrings.indexOf(daysSpinner.getSelectedItem()));
-                currentDay.setAppointment(allAppointmentStrings.indexOf(appointmentsSpinner.getSelectedItem()), firebaseUser.getEmail());
+                currentDay.setAppointment(appointmentIndex, firebaseUser.getEmail());
                 daysDBHelper.updateDayAppointments(currentDay.getKey(), currentDay);
+                Date date = currentDay.getDate();
+                AppointmentModel appointment = currentDay.getAppointments().get(appointmentIndex);
+                Calendar firstNotif = Calendar.getInstance();
+                firstNotif.set(date.getYear(), date.getMonth(), date.getDate(), 0, 0, 0);
+                Calendar secondNotif = Calendar.getInstance();
+                secondNotif.set(date.getYear(), date.getMonth(), date.getDate(),  appointment.getStartTime().getHour(), appointment.getStartTime().getMinute(), 0);
+                secondNotif.add(Calendar.MINUTE, -5);
+                Calendar thirdNotif = Calendar.getInstance();
+                thirdNotif.set(date.getYear(), date.getMonth(), date.getDate(),  appointment.getStartTime().getHour(), appointment.getStartTime().getMinute(), 0);
+                System.out.println(firstNotif.getTime());
+                System.out.println(secondNotif.getTime());
+                System.out.println(thirdNotif.getTime());
+                scheduleNotificationOnDay(firstNotif.getTimeInMillis());             // 00:00 of the day
+                scheduleNotification5MinutesBefore(secondNotif.getTimeInMillis());   // 5 minutes before the apppointment
+                scheduleNotificationOnAppointment(thirdNotif.getTimeInMillis());     // on the time of the appointment
+                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                System.out.println(alarmManager.getNextAlarmClock());
                 finish();
             }
         });
+    }
+
+    private void scheduleNotificationOnDay(long timeInMillis) {
+        Intent notificationIntent = new Intent(UserAddAppointmentActivity.this, NotificationOnDayService.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, notificationIntent, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC, timeInMillis, pendingIntent);
+    }
+
+    private void scheduleNotification5MinutesBefore(long timeInMillis) {
+        Intent notificationIntent = new Intent(UserAddAppointmentActivity.this, Notification5MinService.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, notificationIntent, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC, timeInMillis, pendingIntent);
+    }
+
+    private void scheduleNotificationOnAppointment(long timeInMillis) {
+        Intent notificationIntent = new Intent(UserAddAppointmentActivity.this, NotificationOnAppointmentService.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, notificationIntent, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC, timeInMillis, pendingIntent);
     }
 }
