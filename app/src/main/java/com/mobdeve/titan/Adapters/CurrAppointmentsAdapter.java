@@ -3,26 +3,32 @@ package com.mobdeve.titan.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.mobdeve.titan.DatabaseHelpers.DaysDatabaseHelper;
+import com.mobdeve.titan.Models.AppointmentModel;
+import com.mobdeve.titan.Models.DayModel;
 import com.mobdeve.titan.ViewHolders.AppointmentsViewHolder;
-import com.mobdeve.titan.Models.Appointments;
 import com.mobdeve.titan.R;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class CurrAppointmentsAdapter extends RecyclerView.Adapter<AppointmentsViewHolder>{
-
-    private ArrayList<Appointments> dataAppointments;
+public class CurrAppointmentsAdapter extends RecyclerView.Adapter<AppointmentsViewHolder> {
+    private ArrayList<AppointmentModel> appointments;
     private boolean isToday;
+    private TextView dateTextView;
 
-    public CurrAppointmentsAdapter(ArrayList<Appointments> dataAppointments, boolean isToday) {
-        this.dataAppointments = dataAppointments;
+    public CurrAppointmentsAdapter(ArrayList<AppointmentModel> appointments, boolean isToday, TextView dateTextView) {
+        this.appointments = appointments;
         this.isToday = isToday;
+        this.dateTextView = dateTextView;
     }
 
     @NonNull
@@ -40,12 +46,42 @@ public class CurrAppointmentsAdapter extends RecyclerView.Adapter<AppointmentsVi
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull AppointmentsViewHolder holder, int position) {
-        holder.setName(this.dataAppointments.get(position).getName(), isToday);
-        holder.setDate(this.dataAppointments.get(position).getDate());
-        holder.setTime(this.dataAppointments.get(position).getTime());
-        holder.setStatus(this.dataAppointments.get(position).getStatus());
+        AppointmentModel appointment = this.appointments.get(position);
+        holder.setName(appointment.getEventName(), isToday);
+        holder.setDate(appointment.toStringDate());
+        holder.setTime(appointment.toStringTime());
+
+        if(isToday) {
+            holder.getCancelButton().setImageResource(R.drawable.today_cancel);
+        } else {
+            holder.getCancelButton().setImageResource(R.drawable.soon_cancel);
+        }
+
+        holder.getCancelButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DaysDatabaseHelper daysDBHelper = new DaysDatabaseHelper();
+                String dayID = appointment.getDayID();
+                String email = appointment.getEmail();
+                daysDBHelper.getDay(dayID).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        DayModel day = documentSnapshot.toObject(DayModel.class);
+                        day.setAppointment(day.getAppointments().indexOf(day.getUserAppointment(email)), null);
+                        daysDBHelper.updateDayAppointments(dayID, day);
+                        appointments.remove(position);
+                        if(isToday) {
+                            dateTextView.setText(String.format("Today (%d)", appointments.size()));
+                        } else {
+                            dateTextView.setText(String.format("Soon (%d)", appointments.size()));
+                        }
+                        notifyDataSetChanged();
+                    }
+                });
+            }
+        });
     }
 
     @Override
-    public int getItemCount() { return this.dataAppointments.size(); }
+    public int getItemCount() { return this.appointments.size(); }
 }

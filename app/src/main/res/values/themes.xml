@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Titan" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.Titan" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/green</item>
         <item name="colorPrimaryVariant">@color/green</item>
@@ -23,6 +23,12 @@
     <style name="TitleH2" parent="TextAppearance.AppCompat">
         <item name="android:textColor">#55577F</item>
         <item name="android:textSize">35dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TitleH3" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">#55577F</item>
+        <item name="android:textSize">24dp</item>
         <item name="android:textStyle">bold</item>
     </style>
 

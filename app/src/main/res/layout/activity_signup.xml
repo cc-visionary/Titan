@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:padding="10pt"
+    android:padding="32dp"
     tools:context=".SignupActivity">
 
     <TextView
@@ -42,19 +42,6 @@
         app:layout_constraintTop_toBottomOf="@+id/et_signup_contact" />
 
     <EditText
-        android:id="@+id/et_signup_username"
-        style="@style/Input"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/username_placeholder"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_signup_title" />
-
-    <EditText
         android:id="@+id/et_signup_email"
         style="@style/Input"
         android:layout_width="0dp"
@@ -64,7 +51,7 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_signup_username" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup_title" />
 
     <EditText
         android:id="@+id/et_signup_contact"
@@ -108,6 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/user"
+            android:textAlignment="textEnd"
             android:textAppearance="@style/Body" />
 
         <Switch

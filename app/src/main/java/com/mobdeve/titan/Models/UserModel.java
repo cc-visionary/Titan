@@ -1,10 +1,9 @@
 package com.mobdeve.titan.Models;
 
 public class UserModel {
-    private String username, email, number, password, userType;
+    private String email, number, password, userType;
 
-    public UserModel(String username, String email, String number, String password, String userType) {
-        this.username = username;
+    public UserModel(String email, String number, String password, String userType) {
         this.email = email;
         this.number = number;
         this.password = password;
@@ -13,10 +12,6 @@ public class UserModel {
 
     public UserModel() {
 
-    }
-
-    public String getUsername() {
-        return username;
     }
 
     public String getEmail() {

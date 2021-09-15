@@ -2,59 +2,63 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_timeslot_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
-    android:background="@drawable/item_event_background">
+    android:background="@drawable/spinner_bg">
 
     <TextView
-        android:id="@+id/tv_appointment_name"
+        android:id="@+id/tv_time_slot_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Name"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Start Time"
+        android:textAppearance="@style/Body"
         android:textColor="@color/base"
-        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_appointment_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        android:text="Date"
-        android:textColor="@color/input_placeholder"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_appointment_name" />
-
-    <TextView
-        android:id="@+id/tv_appointment_time"
+        android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        android:text="Time"
-        android:textColor="@color/input_placeholder"
+        android:layout_marginBottom="8dp"
+        android:text="-"
+        android:textAppearance="@style/Body"
+        android:textColor="@color/base"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_appointment_date"
-        app:layout_constraintTop_toBottomOf="@+id/tv_appointment_name" />
+        app:layout_constraintStart_toEndOf="@+id/tv_time_slot_start"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/btn_appointment_cancel"
+    <TextView
+        android:id="@+id/tv_time_slot_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="End Time"
+        android:textAppearance="@style/Body"
+        android:textColor="@color/base"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView16"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_time_slot_person"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@android:drawable/screen_background_light_transparent"
+        android:layout_marginBottom="8dp"
+        android:textAppearance="@style/Body"
+        android:textColor="@color/base"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/white_background" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

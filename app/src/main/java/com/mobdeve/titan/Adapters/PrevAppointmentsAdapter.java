@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mobdeve.titan.Models.AppointmentModel;
 import com.mobdeve.titan.ViewHolders.AppointmentsViewHolder;
-import com.mobdeve.titan.Models.Appointments;
 import com.mobdeve.titan.R;
 
 import org.jetbrains.annotations.NotNull;
@@ -17,15 +17,14 @@ import java.util.ArrayList;
 
 public class PrevAppointmentsAdapter extends RecyclerView.Adapter<AppointmentsViewHolder> {
 
-    private ArrayList<Appointments> dataAppointments;
+    private ArrayList<AppointmentModel> appointments;
 
-    public PrevAppointmentsAdapter(ArrayList<Appointments> dataAppointments) { this.dataAppointments = dataAppointments; }
+    public PrevAppointmentsAdapter(ArrayList<AppointmentModel> appointments) { this.appointments = appointments; }
 
     @NonNull
     @NotNull
     @Override
     public AppointmentsViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.item_appointment, parent, false);
 
@@ -37,14 +36,14 @@ public class PrevAppointmentsAdapter extends RecyclerView.Adapter<AppointmentsVi
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull AppointmentsViewHolder holder, int position) {
-        holder.setName(this.dataAppointments.get(position).getName(), false);
-        holder.setDate(this.dataAppointments.get(position).getDate());
-        holder.setTime(this.dataAppointments.get(position).getTime());
-        holder.setStatus(this.dataAppointments.get(position).getStatus());
+        AppointmentModel appointment = this.appointments.get(position);
+        holder.setName(appointment.getEventName(), false);
+        holder.setDate(appointment.toStringDate());
+        holder.setTime(appointment.toStringTime());
     }
 
     @Override
     public int getItemCount() {
-        return this.dataAppointments.size();
+        return this.appointments.size();
     }
 }

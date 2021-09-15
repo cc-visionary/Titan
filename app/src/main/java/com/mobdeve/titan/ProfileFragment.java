@@ -20,7 +20,7 @@ import com.mobdeve.titan.Models.UserModel;
 
 public class ProfileFragment extends Fragment {
 
-    private TextView usernameTextView, phoneTextView;
+    private TextView emailTextView, phoneTextView;
     private Button logoutButton;
 
     public ProfileFragment() {
@@ -37,7 +37,7 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        this.usernameTextView = view.findViewById(R.id.tv_profile_username);
+        this.emailTextView = view.findViewById(R.id.tv_profile_email);
         this.phoneTextView = view.findViewById(R.id.tv_profile_number);
         this.logoutButton = view.findViewById(R.id.btn_profile_logout);
 
@@ -49,7 +49,7 @@ public class ProfileFragment extends Fragment {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         UserModel user = documentSnapshot.toObject(UserModel.class);
 
-                        usernameTextView.setText(user.getUsername());
+                        emailTextView.setText(user.getEmail());
                         phoneTextView.setText(user.getNumber());
 
                         logoutButton.setOnClickListener(new View.OnClickListener() {
