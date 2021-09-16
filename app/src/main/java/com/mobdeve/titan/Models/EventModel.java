@@ -1,5 +1,7 @@
 package com.mobdeve.titan.Models;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.mobdeve.titan.DatabaseHelpers.DaysDatabaseHelper;
 
 import java.text.SimpleDateFormat;
@@ -115,9 +117,15 @@ public class EventModel {
                     day.setEventID(this.key);
                     day.setKey(daysKey);
                     day.setAppointmentDetails(nextDate, daysKey);
-                    if(!daysDBHelper.doesDayExist(daysKey)) {
-                        daysDBHelper.addDays(daysKey, day);
-                    }
+                    daysDBHelper.getDay(daysKey).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            System.out.println(documentSnapshot != null);
+                            if(documentSnapshot != null) {
+                                daysDBHelper.addDays(daysKey, day);
+                            }
+                        }
+                    });
                 }
             }
         }

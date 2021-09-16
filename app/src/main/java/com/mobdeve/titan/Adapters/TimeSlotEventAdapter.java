@@ -33,8 +33,6 @@ public class TimeSlotEventAdapter extends RecyclerView.Adapter<TimeSlotViewHolde
     public void onBindViewHolder(@NonNull TimeSlotViewHolder holder, int position) {
         AppointmentModel appointment = appointments.get(position);
 
-        System.out.println(appointment.getEmail());
-
         holder.setStartTime(appointment.getStartTime().toString());
         holder.setEndTime(appointment.getEndTime().toString());
 

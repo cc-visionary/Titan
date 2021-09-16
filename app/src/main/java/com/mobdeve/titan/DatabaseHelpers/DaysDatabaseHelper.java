@@ -15,10 +15,6 @@ public class DaysDatabaseHelper {
         collectionReference = FirebaseFirestore.getInstance().collection(COLLECTION_NAME);
     }
 
-    public boolean doesDayExist(String daysKey) {
-        return collectionReference.document(daysKey).get().isSuccessful();
-    }
-
     public void addDays(String key, DayModel day) {
         collectionReference.document(key).set(day);
     }

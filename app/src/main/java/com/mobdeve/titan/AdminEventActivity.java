@@ -126,7 +126,6 @@ public class AdminEventActivity extends AppCompatActivity {
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                 for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                                     DayModel day = document.toObject(DayModel.class);
-                                    System.out.println(day.getKey());
                                     daysDBHelper.deleteDay(day.getKey());
                                 }
                                 finish();
@@ -146,6 +145,7 @@ public class AdminEventActivity extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         EventModel event = documentSnapshot.toObject(EventModel.class);
                         event.addNextMonthToDatabase();
+                        finish();
                     }
                 });
             }
