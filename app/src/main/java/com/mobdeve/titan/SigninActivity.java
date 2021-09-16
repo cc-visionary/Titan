@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -75,10 +76,7 @@ public class SigninActivity extends AppCompatActivity {
                                                     }
                                                 });
                                     } else {
-                                        // If sign in fails, display a message to the user.
-                                        Log.w(TAG, "signInWithEmail:failure", task.getException());
-
-                                        fail();
+                                        fail(task.getException().getMessage());
                                     }
                                 }
                             });
@@ -113,8 +111,8 @@ public class SigninActivity extends AppCompatActivity {
         Toast.makeText(this, "Sign in was successful", Toast.LENGTH_SHORT).show();
     }
 
-    public void fail() {
+    public void fail(String errorMessage) {
         this.pbSignin.setVisibility(View.GONE);
-        Toast.makeText(this, "Sign in failed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
     }
 }
