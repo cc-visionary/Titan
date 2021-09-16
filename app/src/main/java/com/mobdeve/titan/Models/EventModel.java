@@ -1,6 +1,10 @@
 package com.mobdeve.titan.Models;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.mobdeve.titan.DatabaseHelpers.DaysDatabaseHelper;
 
@@ -112,17 +116,17 @@ public class EventModel {
         for(DayModel day : days) {
             if(day != null) {
                 for(int i = 1; i <= 4; i++) {
-                    Date nextDate = day.findNextDate(i);
+                    DayModel currentDay = new DayModel(day.getEventName(), day.getStartTime(), day.getEndTime(), day.getMinutePerSession(), day.getDay());
+                    Date nextDate = currentDay.findNextDate(i);
                     String daysKey = this.key + "_" + new SimpleDateFormat("MMddyyyy", Locale.getDefault()).format(nextDate);
-                    day.setEventID(this.key);
-                    day.setKey(daysKey);
-                    day.setAppointmentDetails(nextDate, daysKey);
-                    daysDBHelper.getDay(daysKey).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    currentDay.setEventID(this.key);
+                    currentDay.setKey(daysKey);
+                    currentDay.setAppointmentDetails(nextDate, daysKey);
+                    daysDBHelper.getDay(daysKey).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
-                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                            System.out.println(documentSnapshot != null);
-                            if(documentSnapshot != null) {
-                                daysDBHelper.addDays(daysKey, day);
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if(task.getResult().toObject(DayModel.class) == null) {
+                                daysDBHelper.addDays(daysKey, currentDay);
                             }
                         }
                     });

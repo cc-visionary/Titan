@@ -19,7 +19,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.mobdeve.titan.Adapters.TimeSlotEventAdapter;
-import com.mobdeve.titan.DataHelpers.EventDataHelper;
 import com.mobdeve.titan.DatabaseHelpers.DaysDatabaseHelper;
 import com.mobdeve.titan.DatabaseHelpers.EventDatabaseHelper;
 import com.mobdeve.titan.Models.AppointmentModel;

@@ -8,13 +8,14 @@ import java.util.Locale;
 
 // to be used in EventModel
 public class DayModel {
-    private String eventID, key;
+    private String eventID, eventName, key;
     private int minutePerSession, day;
     private TimeModel startTime, endTime;
     private Date date;
     private ArrayList<AppointmentModel> appointments = new ArrayList<AppointmentModel>();
 
     public DayModel(String eventName, TimeModel startTime, TimeModel endTime, int minutePerSession, int day) {
+        this.eventName = eventName;
         this.minutePerSession = minutePerSession;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -34,6 +35,14 @@ public class DayModel {
 
     public DayModel() {
 
+    }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public int getMinutePerSession() {
+        return minutePerSession;
     }
 
     public int getDay() {
